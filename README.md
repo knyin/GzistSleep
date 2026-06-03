@@ -6,67 +6,15 @@
 
 - 自动登录统一门户（账号密码 + 验证码自动识别）
 - 模拟手机浏览器访问
-- 模拟定位信息（学校坐标）
+- 模拟定位信息（学校坐标）【仅支持广州校区，惠州校区不支持】
 - 自动识别数学算式验证码并计算结果
 - 重复签到时自动跳过
 - 支持本地定时签到
 - 支持青龙面板部署
 
-## 本地运行
 
-### 环境要求
 
-- Node.js 18+
-- Python 3.7+
-- Playwright Chromium 浏览器
-
-### 安装
-
-```bash
-# 安装 Node.js 依赖
-npm install
-
-# 安装 Playwright 浏览器
-npx playwright install chromium
-
-# 安装 Python 验证码识别库
-pip install ddddocr
-```
-
-### 配置
-
-编辑 `config.json`：
-
-```json
-{
-  "account": {
-    "username": "你的学号",
-    "password": "你的密码"
-  },
-  "urls": {
-    "signin": "签到页面URL"
-  },
-  "schedule": {
-    "enabled": true,
-    "time": "21:30"
-  }
-}
-```
-
-门户地址、定位坐标已内置，无需配置。
-
-### 运行
-
-```bash
-# 立即签到
-npm start
-
-# 或启用定时签到（根据 config.json 中的 schedule 设置）
-```
-
-定时模式会保持进程运行，在设定的时间自动执行签到。
-
-## 青龙面板部署（ARM Docker / 仅 Web 界面）
+## 青龙面板部署（ARM Docker / 仅 Web 界面）推荐此方式！
 
 > ⚠️ 以下操作全部在青龙面板 Web 界面完成，无需 SSH 或终端。
 
@@ -190,6 +138,60 @@ docker run -dit \
 ### 验证
 
 创建任务后，可以点击 **运行** 测试一次，然后查看运行日志确认签到流程正常。
+
+## 本地运行 （不推荐）
+
+### 环境要求
+
+- Node.js 18+
+- Python 3.7+
+- Playwright Chromium 浏览器
+
+### 安装
+
+```bash
+# 安装 Node.js 依赖
+npm install
+
+# 安装 Playwright 浏览器
+npx playwright install chromium
+
+# 安装 Python 验证码识别库
+pip install ddddocr
+```
+
+### 配置
+
+编辑 `config.json`：
+
+```json
+{
+  "account": {
+    "username": "你的学号",
+    "password": "你的密码"
+  },
+  "urls": {
+    "signin": "签到页面URL"
+  },
+  "schedule": {
+    "enabled": true,
+    "time": "21:30"
+  }
+}
+```
+
+门户地址、定位坐标已内置，无需配置。
+
+### 运行
+
+```bash
+# 立即签到
+npm start
+
+# 或启用定时签到（根据 config.json 中的 schedule 设置）
+```
+
+定时模式会保持进程运行，在设定的时间自动执行签到。
 
 ## 文件结构
 
